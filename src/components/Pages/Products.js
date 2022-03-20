@@ -1,8 +1,30 @@
 import React, { useState } from 'react';
+import Product from '../Products/Product.js'
 
 const Products = () => {
-  const cakes = ["Черничный чизкейк", "Фсташковый чизкейк", "Торт Пьяная вишня", "Торт Красный бархат", "Киевский торт",
+  const __cakes = ["Черничный чизкейк", "Фисташковый чизкейк", "Торт Пряная вишня", "Торт Красный бархат", "Киевский торт",
   "Зефир", "Пирожное макарон", "Пирожное картошка", "Пирожное кунжутное бурфи", "Морковный торт", "Шоколадный бисквит"]
+
+  const cakes = [
+    {
+      title: 'Blueberry cheesecake',
+      description: 'Soft shortbread base, flavored cheesecake with blueberries',
+      code: 'blueberry-cheesecake',
+      image: 'cake1.jpg'
+    },
+    {
+      title: 'Pistachio cheesecake',
+      description: 'Soft shortbread base, flavored cheesecake with pistachio butter',
+      code: 'pistachio-cheesecake',
+      image: 'cake1.jpg'
+    },
+    {
+      title: 'Spicy cherry cake',
+      description: 'Spicy chocolate biscuit, chocolate creme, cherry konfi layer with cinnamon, salty caramel and roasted hazelnuts',
+      code: 'spicy-cherry-cake',
+      image: 'cake1.jpg'
+    }
+  ]
   const [searchPhrase, setSearchPhrase] = useState('')
   const [products, setProducts] = useState(cakes)
   const [showNotFoundError, setShowNotFoundError] = useState(false)
@@ -11,7 +33,7 @@ const Products = () => {
     let newProducts = []
 
     for (let product of products) {
-      let productStr = product.toLowerCase()
+      let productStr = product.title.toLowerCase()
       if (productStr.includes(searchPhrase.toLowerCase())) {
         newProducts.push(product)
       }
@@ -27,9 +49,9 @@ const Products = () => {
 
   return (
     <div className={'container'}>
-      <h2>Выбери свой тортик</h2>
+      <h2 className={'tittle'}>Choose your cake</h2>
 
-        <form className={"row g-2 justify-content-center"}>
+        <div className={"row g-2 justify-content-center"}>
           <div className="col-auto">
             <input
               className={"form-control"}
@@ -41,20 +63,26 @@ const Products = () => {
           <div className="col-auto">
             <button type="submit" className={"btn btn-primary"} onClick={searchHandler}>Найти</button>
           </div>
-        </form>
+        </div>
 
       { showNotFoundError && (
         <div className={'row'}>
           <div className="alert alert-danger" role="alert">
-            По вашему запросу не нашлось тортика, посмотрите все наши предложения
+            Sorry, couldn't find cake for your request. Try something other or choose from below
           </div>
         </div>
       )}
 
-      <div className={'row'}>
-        <ul>
-        {products && products.map(el => (<li>{el}</li>))}
-        </ul>
+      <div className={'row products'}>
+        {products && products.map(el => (
+          <Product
+            image={el.image}
+            code={el.code}
+            key={el.code}
+            title={el.title}
+            description={el.description}
+          />
+        ))}
       </div>
     </div>
   )

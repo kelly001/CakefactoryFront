@@ -17,7 +17,7 @@ const Header = (props) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to="/" className={(navData) => navData.isActive ? 'nav-link active': 'nav-link'}>
-                CakeFactory
+                Home
               </NavLink>
             </li>
             <li className="nav-item">

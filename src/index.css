@@ -12,21 +12,24 @@ code {
     monospace;
 }
 
+.tittle {
+  margin: 20px auto;
+}
+
 .cake-form {
   width: 50%;
   margin: 0 auto;
   padding: 15px;
   border: 1px solid #ced4da;
   border-radius: 0.25em;
-  background-color: #EEADCD;
+  background-color: #F8F9FB;
 }
 
-.btn-primary {
-  background-color: #D63384;
-  border-color: #D63384;
+.products {
+  text-align: left;
+  margin: 20px auto;
 }
 
-.btn-primary:focus {
-  background-color: #D63384;
-  border-color: #D63384;
+.products .card-text {
+  min-height: 50%;
 }
