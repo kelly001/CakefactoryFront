@@ -61,7 +61,7 @@ const Products = () => {
             />
           </div>
           <div className="col-auto">
-            <button type="submit" className={"btn btn-primary"} onClick={searchHandler}>Найти</button>
+            <button type="submit" className={"btn btn-primary"} onClick={searchHandler}>Search</button>
           </div>
         </div>
 
