@@ -9,7 +9,7 @@ const Welcome = () => {
 
   return (
     <div className={'container'}>
-      <h1>Закажи тортик прямо сейчас!</h1>
+      <h1>Закажи тортик прямо сейчас</h1>
       <div className={'row'}>
         <div className={'cake-form'}>
           <Form onSubmit={onSubmitHandler} />
