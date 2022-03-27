@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Button = (props) => {
-  console.log('Button RUNNING');
   return (
     <button
       type={props.type || 'button'}

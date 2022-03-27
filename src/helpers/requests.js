@@ -1,28 +1,27 @@
 import React from 'react';
-import cookie from 'react-cookies';
 
-const SYNC = _sync();
-const API_URL = 'https://api.somesite.com/';
+const URL = 'http://localhost/cakefactory/save_order.php';
 
-export const showSubscribeModal = async (email, type = 'avia', timeout = 3000) => {
-  const cookie_name = cookie.get('is_subscribed')
-  let isSubscribed = false;
-
-  if (email != null && email !== '') {
-
-    let response = await fetch(API_URL);
-
-    if (response.ok) { // если HTTP-статус в диапазоне 200-299
-                       // получаем тело ответа (см. про этот метод ниже)
-      let json = await response.json();
-      let result = JSON.parse(json)
-      isSubscribed = result.is_subscribed ? result.is_subscribed : false;
-    } else {
-      alert("Ошибка HTTP: " + response.status);
+export const saveOrder = async (email, phone, cake_name, callback) => {
+  try {
+    let data = {
+      email: email,
+      phone: phone,
+      cake_name: cake_name,
+      callback: callback,
     }
-  }
 
-  if (!isSubscribed && !cookie.load(cookie_name)) {
-    //some code
+    let response = await fetch(URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify(data)
+    })
+
+    return await response.json()
+  } catch (error) {
+    console.log(error.message)
   }
 }
