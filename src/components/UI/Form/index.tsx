@@ -3,25 +3,24 @@ import Button from "../Button";
 import Input from "../Input";
 import { saveOrder } from '../../../helpers/requests'
 
-const Form = () => {
+const Form: React.FC = () => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [name, setName] = useState('')
   const [callback, setCallback] = useState(true)
   const [formStatus, setFormStatus] = useState('new')
 
-  const setCallbackHandler = (event) => {
+  const setCallbackHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     console.log(event)
-    setCallback(event.target.checked)
+    setCallback(event.currentTarget.checked)
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: React.FormEvent): void => {
     event.preventDefault()
 
     saveOrder(email, phone, name, callback)
       .then(response => {
-        let data = response.data
-        if (data.status === 'success') {
+        if (response.status === 'success') {
           setFormStatus('sent')
         } else {
           setFormStatus('error')
@@ -36,12 +35,30 @@ const Form = () => {
     <div className=''>
       { formStatus === 'new' && (
           <form name={'orders'} method={'post'}>
-          <Input id={'emailInput'} label={'Email address'} type={'email'} helpText={'We\'ll never share your email with anyone else.'}
-                 value={email} onChange={(event) => setEmail(event.target.value)} />
-          <Input id={'phoneInput'} label={'Phone number'} type={'text'} helpText={'We\'ll never share your phone number with anyone else too'}
-                 value={phone} onChange={(event) => setPhone(event.target.value)} />
-          <Input id={'nameInput'} label={'Cake\'s name'} type={'text'}
-                 value={name} onChange={(event) => setName(event.target.value)} />
+          <Input input={{
+            type: 'email',
+            id: 'emailInput',
+            label: 'Email address',
+            helpText: 'We\'ll never share your email with anyone else.',
+            onChange: (event) => setEmail(event.target.value),
+            value: email,
+          }} />
+          <Input input={{
+            type: 'text',
+            id: 'phoneInput',
+            label: 'Phone number',
+            helpText: 'We\'ll never share your phone number with anyone else.',
+            onChange: (event) => setPhone(event.target.value),
+            value: phone,
+          }} />
+          <Input input={{
+            type: 'text',
+            id: 'nameInput',
+            label: 'Cake\'s name',
+            helpText: 'Cake\'s name',
+            onChange: (event) => setName(event.target.value),
+            value: name,
+          }} />
 
           <div className="mb-3 form-check">
             <input type="checkbox" className="form-check-input"
@@ -52,7 +69,12 @@ const Form = () => {
           </div>
 
 
-          <Button className={'btn btn-primary'} type={'button'} disabled={false} onClick={(event) => submitHandler(event)}>Submit</Button>
+          <Button btn={{
+            className: 'btn btn-primary',
+            type: 'button',
+            disabled: false,
+            onClick: (event: React.FormEvent) => submitHandler(event)
+          }}>Submit</Button>
         </form>
       )}
 

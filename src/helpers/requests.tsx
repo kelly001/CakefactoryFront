@@ -2,9 +2,14 @@ import React from 'react';
 
 const URL = 'http://localhost/cakefactory/save_order.php';
 
-export const saveOrder = async (email, phone, cake_name, callback) => {
+interface Response {
+  status: string,
+  msg: string,
+}
+
+export const saveOrder = async (email: string, phone: string, cake_name: string, callback: boolean): Promise<Response> => {
   try {
-    let data = {
+    let requestData = {
       email: email,
       phone: phone,
       cake_name: cake_name,
@@ -17,11 +22,15 @@ export const saveOrder = async (email, phone, cake_name, callback) => {
         'Content-Type': 'application/json;charset=utf-8',
         'Access-Control-Allow-Origin': '*',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(requestData)
     })
 
-    return await response.json()
-  } catch (error) {
-    console.log(error.message)
+    const { data } =  await response.json()
+    return data
+  } catch (error: any) {
+    return {
+      status: 'error',
+      msg: error.message
+    }
   }
 }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
-import Product from '../Products/Product.js'
+import Product from '../Products/Product'
+import ShopStore from "../../models/shopStore";
 
-const Products = () => {
-  const cakes = useSelector(state => state.cakes)
+const Products: React.FC = () => {
+  const cakes = useSelector((state: ShopStore) => state.cakes)
 
   const [searchPhrase, setSearchPhrase] = useState('')
   const [products, setProducts] = useState(cakes)
@@ -55,12 +56,7 @@ const Products = () => {
 
       <div className={'row products'}>
         {products && products.map(el => (
-          <Product
-            image={el.image}
-            code={el.code}
-            key={el.code}
-            title={el.title}
-            description={el.description}
+          <Product product={el}
           />
         ))}
       </div>

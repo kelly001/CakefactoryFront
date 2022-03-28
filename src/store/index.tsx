@@ -1,20 +1,24 @@
-import { createStore } from 'redux';
+import { createStore, AnyAction } from 'redux';
+import ShopStore from "../models/shopStore";
 
-const initialState = {
+const initialState: ShopStore = {
   cakes: [
     {
+      id: 123,
       title: 'Blueberry cheesecake',
       description: 'Soft shortbread base, flavored cheesecake with blueberries',
       code: 'blueberry-cheesecake',
       image: 'cake1.jpg'
     },
     {
+      id: 456,
       title: 'Pistachio cheesecake',
       description: 'Soft shortbread base, flavored cheesecake with pistachio butter',
       code: 'pistachio-cheesecake',
       image: 'cake1.jpg'
     },
     {
+      id: 789,
       title: 'Spicy cherry cake',
       description: 'Spicy chocolate biscuit, chocolate creme, cherry konfi layer with cinnamon, salty caramel and roasted hazelnuts',
       code: 'spicy-cherry-cake',
@@ -26,7 +30,7 @@ const initialState = {
   orders: []
 }
 
-const cakesReducer = (state = initialState, action) =>{
+const cakesReducer = (state = initialState, action: AnyAction) =>{
 
   return state;
 }
