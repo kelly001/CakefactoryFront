@@ -8,21 +8,24 @@ const initialState: ShopStore = {
       title: 'Blueberry cheesecake',
       description: 'Soft shortbread base, flavored cheesecake with blueberries',
       code: 'blueberry-cheesecake',
-      image: 'cake1.jpg'
+      image: 'cake1.jpg',
+      props: ['milk', 'berries']
     },
     {
       id: 456,
       title: 'Pistachio cheesecake',
       description: 'Soft shortbread base, flavored cheesecake with pistachio butter',
       code: 'pistachio-cheesecake',
-      image: 'cake1.jpg'
+      image: 'cake1.jpg',
+      props: ['milk', 'berries']
     },
     {
       id: 789,
       title: 'Spicy cherry cake',
       description: 'Spicy chocolate biscuit, chocolate creme, cherry konfi layer with cinnamon, salty caramel and roasted hazelnuts',
       code: 'spicy-cherry-cake',
-      image: 'cake1.jpg'
+      image: 'cake1.jpg',
+      props: ['biscuit', 'chocolate', 'berries']
     }
   ],
   cakesTitles:  ["Черничный чизкейк", "Фисташковый чизкейк", "Торт Пряная вишня", "Торт Красный бархат", "Киевский торт",
