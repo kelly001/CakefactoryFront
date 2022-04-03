@@ -1,7 +1,7 @@
 import React from 'react'
-import Product from "../../models/product";
+import ProductType from "../../models/product";
 
-const Product: React.FC<{product: Product}> = (props) => {
+const Product: React.FC<{product: ProductType}> = (props) => {
   return (
     <div className={"card m-1 w-25"}>
       <img src={'/images/'+props.product.image} className="card-img-top" alt="" />

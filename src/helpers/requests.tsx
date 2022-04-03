@@ -23,9 +23,9 @@ export const saveOrder = async (email: string, phone: string, cake_name: string,
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(requestData)
-    })
+    });
 
-    const { data } =  await response.json()
+    const { data } =  await response.json();
     return data
   } catch (error: any) {
     return {
@@ -33,4 +33,4 @@ export const saveOrder = async (email: string, phone: string, cake_name: string,
       msg: error.message
     }
   }
-}
+};

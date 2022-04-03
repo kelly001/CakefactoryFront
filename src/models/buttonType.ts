@@ -4,7 +4,7 @@ interface ButtonType {
     type: "button"|"submit"|"reset",
     className: string,
     disabled: boolean,
-    onClick: (e: React.FormEvent) => void,
+    onClick: (e: React.MouseEvent) => void,
 }
 
 export default ButtonType

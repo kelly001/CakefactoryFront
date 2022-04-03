@@ -28,12 +28,12 @@ const initialState: ShopStore = {
   cakesTitles:  ["Черничный чизкейк", "Фисташковый чизкейк", "Торт Пряная вишня", "Торт Красный бархат", "Киевский торт",
     "Зефир", "Пирожное макарон", "Пирожное картошка", "Пирожное кунжутное бурфи", "Морковный торт", "Шоколадный бисквит"],
   orders: []
-}
+};
 
 const cakesReducer = (state = initialState, action: AnyAction) =>{
 
   return state;
-}
+};
 
 const store = createStore(cakesReducer);
 

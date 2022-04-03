@@ -33,3 +33,7 @@ code {
 .products .card-text {
   min-height: 50%;
 }
+
+.search-form {
+  margin-bottom: 10px;
+}

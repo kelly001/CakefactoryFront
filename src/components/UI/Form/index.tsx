@@ -4,19 +4,21 @@ import Input from "../Input";
 import { saveOrder } from '../../../helpers/requests'
 
 const Form: React.FC = () => {
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [name, setName] = useState('')
-  const [callback, setCallback] = useState(true)
-  const [formStatus, setFormStatus] = useState('new')
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+
+
+  const [callback, setCallback] = useState(true);
+  const [formStatus, setFormStatus] = useState('new');
 
   const setCallbackHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(event)
+    console.log(event);
     setCallback(event.currentTarget.checked)
-  }
+  };
 
   const submitHandler = (event: React.FormEvent): void => {
-    event.preventDefault()
+    event.preventDefault();
 
     saveOrder(email, phone, name, callback)
       .then(response => {
@@ -73,7 +75,7 @@ const Form: React.FC = () => {
             className: 'btn btn-primary',
             type: 'button',
             disabled: false,
-            onClick: (event: React.FormEvent) => submitHandler(event)
+            onClick: (event: React.MouseEvent) => submitHandler(event)
           }}>Submit</Button>
         </form>
       )}
