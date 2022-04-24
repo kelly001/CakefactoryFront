@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from "../Button";
 import Input from "../Input";
 import { saveOrder } from '../../../helpers/requests'
 
 const Form: React.FC = () => {
-  const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+  const emailRef = useRef<HTMLInputElement>(null);
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
 
@@ -19,32 +21,34 @@ const Form: React.FC = () => {
 
   const submitHandler = (event: React.FormEvent): void => {
     event.preventDefault();
+    const email = emailRef.current?.value;
 
-    saveOrder(email, phone, name, callback)
-      .then(response => {
-        if (response.status === 'success') {
-          setFormStatus('sent')
-        } else {
-          setFormStatus('error')
-        }
-      })
-      .catch(error => {
-        setFormStatus('error')
-      })
+    if (email !== undefined) {
+      saveOrder(email, phone, name, callback)
+          .then(response => {
+            if (response.status === 'success') {
+              setFormStatus('sent')
+              dispatch({type: 'newOrder', payload: {email, phone, name, callback}})
+            } else {
+              setFormStatus('error')
+            }
+          })
+          .catch(error => {
+            setFormStatus('error')
+          })
+    }
   }
 
   return (
     <div className=''>
       { formStatus === 'new' && (
           <form name={'orders'} method={'post'}>
-          <Input input={{
-            type: 'email',
-            id: 'emailInput',
-            label: 'Email address',
-            helpText: 'We\'ll never share your email with anyone else.',
-            onChange: (event) => setEmail(event.target.value),
-            value: email,
-          }} />
+            <div className="mb-3">
+              <label htmlFor={'emailInput'} className="form-label">{'Email address'}</label>
+              <input type={'email'} className="form-control" id={'emailInput'} aria-describedby={'emailInputHelp'}
+                     ref = {emailRef}/>
+              <div id={'emailInputHelp'} className="form-text">We'll never share your email with anyone else.</div>
+            </div>
           <Input input={{
             type: 'text',
             id: 'phoneInput',

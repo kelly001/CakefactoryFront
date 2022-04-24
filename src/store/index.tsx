@@ -34,7 +34,21 @@ const initialState: ShopStore = {
 };
 
 const cakesReducer = (state = initialState, action: AnyAction) =>{
+  if (action.type === 'newOrder') {
+    const [email, phone, name, callback] = action.payload;
+    let orders = state.orders;
+    orders.push({
+      cake_name: name,
+      email: email,
+      phone: phone,
+      callback: callback,
+    });
 
+    return {
+      ...state,
+      orders: orders
+    }
+  }
   return state;
 };
 
